@@ -1,71 +1,3 @@
-
-CREATE TABLE Funcao (
-    FuncaoID INT PRIMARY KEY,
-    DescricaoFuncao VARCHAR(100) NOT NULL
-);
-
-
-CREATE TABLE Contratante (
-    CNPJ VARCHAR(18) PRIMARY KEY,
-    NomeEstabelecimento VARCHAR(100),
-    Telefone VARCHAR(20),
-    Endereco VARCHAR(200),
-    NomeResponsavel VARCHAR(100),
-    TipoEstabelecimento VARCHAR(50)
-);
-
-
-CREATE TABLE Freelancer (
-    CPF CHAR(11) PRIMARY KEY,
-    Nome VARCHAR(100),
-    Telefone VARCHAR(20),
-    FuncaoID INT,
-    Disponibilidade VARCHAR(50),
-    FOREIGN KEY (FuncaoID) REFERENCES Funcao(FuncaoID)
-);
-
-
-CREATE TABLE Valor_Diaria_Hora (
-    ValorID INT PRIMARY KEY,
-    FuncaoID INT,
-    Tipo VARCHAR(10), 
-    Valor DECIMAL(10,2),
-    FOREIGN KEY (FuncaoID) REFERENCES Funcao(FuncaoID)
-);
-
-
-CREATE TABLE Agendamento (
-    AgendamentoID INT PRIMARY KEY,
-    CNPJ VARCHAR(18),
-    CPF CHAR(11),
-    Data DATE,
-    HoraInicio TIME,
-    HoraFim TIME,
-    Modalidade VARCHAR(10), 
-    FuncaoID INT,
-    Status VARCHAR(20),
-    FOREIGN KEY (CNPJ) REFERENCES Contratante(CNPJ),
-    FOREIGN KEY (CPF) REFERENCES Freelancer(CPF),
-    FOREIGN KEY (FuncaoID) REFERENCES Funcao(FuncaoID)
-);
-
-CREATE TABLE Pagamento (
-    PagamentoID INT PRIMARY KEY,
-    CNPJ VARCHAR(18),
-    CPF CHAR(11),
-    FuncaoID INT,
-    ValorID INT,
-    DataPagamento DATE,
-    Modalidade VARCHAR(10), 
-    MetodoPagamento VARCHAR(20), 
-    ValorCalculado DECIMAL(10,2),
-    FOREIGN KEY (CNPJ) REFERENCES Contratante(CNPJ),
-    FOREIGN KEY (CPF) REFERENCES Freelancer(CPF),
-    FOREIGN KEY (FuncaoID) REFERENCES Funcao(FuncaoID),
-    FOREIGN KEY (ValorID) REFERENCES Valor_Diaria_Hora(ValorID)
-);
-
-
 CREATE TABLE Funcao (
     FuncaoID INT PRIMARY KEY,
     DescricaoFuncao VARCHAR(100) NOT NULL
@@ -143,14 +75,14 @@ INSERT INTO Funcao VALUES (8, 'Atendente');
 INSERT INTO Funcao VALUES (9, 'Recepcionista');
 INSERT INTO Funcao VALUES (10, 'Segurança');
 
-INSERT INTO Contratante VALUES ('12345678000101', 'Bar do Zé', '44999990001', 'Rua das Flores, 100', 'José Silva', 'Bar');
+INSERT INTO Contratante VALUES ('12345678000101', 'Bar do Ze', '44999990001', 'Rua das Flores, 100', 'José Silva', 'Bar');
 INSERT INTO Contratante VALUES ('23456789000102', 'Lanchonete Sabor', '44999990002', 'Av. Brasil, 200', 'Ana Costa', 'Lanchonete');
 INSERT INTO Contratante VALUES ('34567890000103', 'Restaurante Bom Gosto', '44999990003', 'Rua Central, 300', 'Carlos Lima', 'Restaurante');
-INSERT INTO Contratante VALUES ('45678901000104', 'Burguer Master', '44999990004', 'Av. Paraná, 400', 'Maria Souza', 'Lanchonete');
-INSERT INTO Contratante VALUES ('56789012000105', 'Pizzaria Massa Fina', '44999990005', 'Rua Itália, 500', 'Paulo Rocha', 'Restaurante');
-INSERT INTO Contratante VALUES ('67890123000106', 'Churrasquinho do João', '44999990006', 'Rua Chile, 600', 'João Santos', 'Bar');
+INSERT INTO Contratante VALUES ('45678901000104', 'Burguer Master', '44999990004', 'Av. Parana, 400', 'Maria Souza', 'Lanchonete');
+INSERT INTO Contratante VALUES ('56789012000105', 'Pizzaria Massa Fina', '44999990005', 'Rua Italia, 500', 'Paulo Rocha', 'Restaurante');
+INSERT INTO Contratante VALUES ('67890123000106', 'Churrasquinho do Joao', '44999990006', 'Rua Chile, 600', 'João Santos', 'Bar');
 INSERT INTO Contratante VALUES ('78901234000107', 'Doce Sabor', '44999990007', 'Av. Getúlio Vargas, 700', 'Helena Dias', 'Restaurante');
-INSERT INTO Contratante VALUES ('89012345000108', 'Boteco Central', '44999990008', 'Rua Goiás, 800', 'Roberto Alves', 'Bar');
+INSERT INTO Contratante VALUES ('89012345000108', 'Boteco Central', '44999990008', 'Rua Goias, 800', 'Roberto Alves', 'Bar');
 INSERT INTO Contratante VALUES ('90123456000109', 'Pastel da Feira', '44999990009', 'Rua Pernambuco, 900', 'Juliana Torres', 'Lanchonete');
 INSERT INTO Contratante VALUES ('01234567000110', 'Restaurante Bela Mesa', '44999990010', 'Av. Curitiba, 1000', 'Bruno Cardoso', 'Restaurante');
 
@@ -198,4 +130,9 @@ INSERT INTO Pagamento VALUES (8, '89012345000108', '88888888888', 8, 10, '2025-0
 INSERT INTO Pagamento VALUES (9, '90123456000109', '99999999999', 9, 9, '2025-07-09', 'hora', 'dinheiro', 80.00);
 INSERT INTO Pagamento VALUES (10, '01234567000110', '00000000000', 10, 10, '2025-07-10', 'hora', 'PIX', 102.00);
 
-
+SELECT * FROM Pagamento;
+SELECT * FROM Funcao;
+SELECT * FROM Contratante;
+SELECT * FROM Valor_Diaria_Hora;
+SELECT * FROM Freelancer;
+SELECT * FROM Agendamento;
