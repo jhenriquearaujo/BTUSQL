@@ -14,8 +14,16 @@ source venv/bin/activate
 bash 
 source venv/bin/activate
 
-# Dependencias
+Para sair do ambiente virtual: deactivate
+
+# Dependencias dentro do venv
 - pip install sqlAlchemy
 - pip install pg8000
-- pip install psycopg2-binary
 - Se não me engano: pip install Alembic
+
+# Para executar
+
+Mudar no database.py de acordo com sua máquina
+DATABASE_URL = "postgresql+pg8000://postgres:xina@localhost:5432/postgres"
+
+python main.py

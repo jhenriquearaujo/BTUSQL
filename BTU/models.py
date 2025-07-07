@@ -11,9 +11,6 @@ class Funcao(Base):
     pagamentos = relationship("Pagamento", back_populates="funcao")
     valores = relationship("ValorDiariaHora", back_populates="funcao")
 
-    #def __repr__(self):
-    #return f"<Funcao(FuncaoID={self.FuncaoID}, DescricaoFuncao='{self.DescricaoFuncao}')>
-
 class Contratante(Base):
     __tablename__ = 'contratante'
     CNPJ = Column(String(18), primary_key=True)
