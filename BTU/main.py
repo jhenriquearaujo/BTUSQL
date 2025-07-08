@@ -1,15 +1,11 @@
 from datetime import date, time
 from pprint import pprint
-
 from database import Base, Session ,engine
 from models import Funcao, Contratante, Freelancer, ValorDiariaHora, Agendamento, Pagamento
-
 session = Session()
-
 def reset_db():
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
-
 def insert_initial_data():
     session.add_all([
         Funcao(FuncaoID=1, DescricaoFuncao='Garcom'),
@@ -23,7 +19,6 @@ def insert_initial_data():
         Funcao(FuncaoID=9, DescricaoFuncao='Recepcionista'),
         Funcao(FuncaoID=10, DescricaoFuncao='Guardinha')
     ])
-
     session.add_all([
         Contratante(CNPJ="42370268000199", NomeEstabelecimento="Bar do Ze", Telefone="44998123456", Endereco="Rua das Flores, 100", NomeResponsavel="Jose Silva", TipoEstabelecimento="Bar"),
         Contratante(CNPJ="09182734000155", NomeEstabelecimento="Lanchonete Sabor", Telefone="44998234567", Endereco="Av. Brasil, 200", NomeResponsavel="Ana Costa", TipoEstabelecimento="Lanchonete"),
@@ -36,7 +31,6 @@ def insert_initial_data():
         Contratante(CNPJ="79432111000188", NomeEstabelecimento="Tapiocaria Saborosa", Telefone="44998901234", Endereco="Rua dos Comerciantes, 900", NomeResponsavel="Juliana Castro", TipoEstabelecimento="Tapiocaria"),
         Contratante(CNPJ="10345678000101", NomeEstabelecimento="Sushi Place", Telefone="44999012345", Endereco="Av. Japao, 1000", NomeResponsavel="Takashi Ito", TipoEstabelecimento="Restaurante Japones")
     ])
-
     session.add_all([
         Freelancer(CPF="12345678900", Nome="Carlos Martins", Telefone="44998011111", FuncaoID=1, Disponibilidade="Noite"),
         Freelancer(CPF="23456789012", Nome="Ana Beatriz", Telefone="44998022222", FuncaoID=2, Disponibilidade="Tarde"),
@@ -49,7 +43,6 @@ def insert_initial_data():
         Freelancer(CPF="90123456789", Nome="Henrique Oliveira", Telefone="44998099999", FuncaoID=9, Disponibilidade="Manha"),
         Freelancer(CPF="01234567890", Nome="Isabela Mendes", Telefone="44998101010", FuncaoID=10, Disponibilidade="Tarde")
     ])
-
     session.add_all([
         ValorDiariaHora(ValorID=1, FuncaoID=1, Tipo="hora", Valor=20.00),
         ValorDiariaHora(ValorID=2, FuncaoID=1, Tipo="diaria", Valor=160.00),
@@ -62,7 +55,6 @@ def insert_initial_data():
         ValorDiariaHora(ValorID=9, FuncaoID=7, Tipo="hora", Valor=19.00),
         ValorDiariaHora(ValorID=10, FuncaoID=8, Tipo="diaria", Valor=145.00)
     ])
-
     session.add_all([
         Agendamento(AgendamentoID=1, CNPJ="42370268000199", CPF="12345678900", Data=date(2025, 7, 1), HoraInicio=time(18, 0), HoraFim=time(23, 0), Modalidade="hora", FuncaoID=1, Status="confirmado"),
         Agendamento(AgendamentoID=2, CNPJ="09182734000155", CPF="23456789012", Data=date(2025, 7, 2), HoraInicio=time(10, 0), HoraFim=time(16, 0), Modalidade="diaria", FuncaoID=2, Status="pendente"),
@@ -75,7 +67,6 @@ def insert_initial_data():
         Agendamento(AgendamentoID=9, CNPJ="79432111000188", CPF="90123456789", Data=date(2025, 7, 9), HoraInicio=time(7, 0), HoraFim=time(13, 0), Modalidade="hora", FuncaoID=9, Status="pendente"),
         Agendamento(AgendamentoID=10, CNPJ="10345678000101", CPF="01234567890", Data=date(2025, 7, 10), HoraInicio=time(16, 0), HoraFim=time(22, 0), Modalidade="diaria", FuncaoID=10, Status="confirmado")
     ])
-
     session.add_all([
         Pagamento(PagamentoID=1, CNPJ="42370268000199", CPF="12345678900", FuncaoID=1, ValorID=1, DataPagamento=date(2025, 7, 1), Modalidade="hora", MetodoPagamento="PIX", ValorCalculado=100.00),
         Pagamento(PagamentoID=2, CNPJ="09182734000155", CPF="23456789012", FuncaoID=2, ValorID=4, DataPagamento=date(2025, 7, 2), Modalidade="diaria", MetodoPagamento="Cartao", ValorCalculado=200.00),
@@ -88,9 +79,7 @@ def insert_initial_data():
         Pagamento(PagamentoID=9, CNPJ="79432111000188", CPF="90123456789", FuncaoID=9, ValorID=9, DataPagamento=date(2025, 7, 9), Modalidade="hora", MetodoPagamento="Dinheiro", ValorCalculado=114.00),
         Pagamento(PagamentoID=10, CNPJ="10345678000101", CPF="01234567890", FuncaoID=10, ValorID=10, DataPagamento=date(2025, 7, 10), Modalidade="diaria", MetodoPagamento="PIX", ValorCalculado=145.00)
     ])
-
     session.commit()
-
 def crud():
     adicionar = Funcao(FuncaoID=11, DescricaoFuncao="DJ")
     session.add(adicionar)
@@ -107,74 +96,13 @@ def crud():
     #alterar2 = session.query(Funcao).filter_by(FuncaoID=2).first()
     #alterar2.DescricaoFuncao = "Cozinheiro Chef"
     #session.commit()
-#
+#    
     #excluir2 = session.query(Freelancer).filter_by(CPF="56789012345").first()
     #session.delete(excluir2)
     #session.commit()
-#
-    #novopagamento = Pagamento(
-    #    PagamentoID=11,
-    #    CNPJ="42370268000199",
-    #    CPF="23456789012",
-    #    FuncaoID=2,
-    #    ValorID=4,
-    #    DataPagamento=date(2025, 7, 11),
-    #    Modalidade="Diária",
-    #    MetodoPagamento="Cartão",
-    #    ValorCalculado=210.00
-    #)
-    #session.add(novopagamento)
-    #session.commit()
 
-    
-
-def show_antes():
-    print("\n Funcao Antes:")
-    funcoes = session.query(Funcao).all()
-    print(f"{'ID':<4} {'Descricao'}")
-    print("-" * 30)
-    for f in funcoes:
-        print(f"{f.FuncaoID:<4} {f.DescricaoFuncao}")
-
-    #print("\n Contratantes:")
-    #contratantes = session.query(Contratante).all()
-    #print(f"{'CNPJ':<18} {'Nome':<25} {'Responsavel':<20} {'Tipo':<15} {'Telefone':<12} {'Endereco'}")
-    #print("-" * 110)
-    #for c in contratantes:
-    #    print(f"{c.CNPJ:<18} {c.NomeEstabelecimento:<25} {c.NomeResponsavel:<20} {c.TipoEstabelecimento:<15} {c.Telefone:<12} {c.Endereco}")
-#
-    #print("\n Freelancers:")
-    #freelancers = session.query(Freelancer).all()
-    #print(f"{'CPF':<12} {'Nome':<20} {'Telefone':<12} {'FuncaoID':<9} {'Disponibilidade'}")
-    #print("-" * 70)
-    #for f in freelancers:
-    #    print(f"{f.CPF:<12} {f.Nome:<20} {f.Telefone:<12} {f.FuncaoID:<9} {f.Disponibilidade}")
-#
-    #print("\n Valores:")
-    #valores = session.query(ValorDiariaHora).all()
-    #print(f"{'ID':<4} {'FuncaoID':<9} {'Tipo':<10} {'Valor'}")
-    #print("-" * 35)
-    #for v in valores:
-    #    print(f"{v.ValorID:<4} {v.FuncaoID:<9} {v.Tipo:<10} {v.Valor}")
-#
-    #print("\n Agendamentos:")
-    #agendamentos = session.query(Agendamento).all()
-    #print(f"{'ID':<4} {'CPF':<12} {'CNPJ':<18} {'Data':<12} {'Inicio':<8} {'Fim':<8} {'Modalidade':<11} {'FuncaoID':<9} {'Status'}")
-    #print("-" * 100)
-    #for a in agendamentos:
-    #    print(f"{a.AgendamentoID:<4} {a.CPF:<12} {a.CNPJ:<18} {a.Data:<12} {a.HoraInicio:<8} {a.HoraFim:<8} {a.Modalidade:<11} {a.FuncaoID:<9} {a.Status}")
-#
-#
-    #print("\n Pagamentos:")
-    #pagamentos = session.query(Pagamento).all()
-    #print(f"{'ID':<4} {'CPF':<12} {'CNPJ':<18} {'FuncaoID':<9} {'ValorID':<8} {'Data':<12} {'Modalidade':<11} {'Metodo':<10} {'Valor'}")
-    #print("-" * 95)
-    #for p in pagamentos:
-    #    data = p.DataPagamento.strftime("%d-%m-%Y") if p.DataPagamento else "-"
-    #    print(f"{p.PagamentoID:<4} {p.CPF:<12} {p.CNPJ:<18} {p.FuncaoID:<9} {p.ValorID:<8} {p.DataPagamento:} {p.Modalidade:<11} {p.MetodoPagamento:<10} {p.ValorCalculado}")
-
-def show_depois():
-    print("\n Funcao Depois:")
+def show():
+    print("\n Funcao:")
     funcoes = session.query(Funcao).all()
     print(f"{'ID':<4} {'Descricao'}")
     print("-" * 30)
@@ -193,7 +121,7 @@ def show_depois():
     print(f"{'CPF':<12} {'Nome':<20} {'Telefone':<12} {'FuncaoID':<9} {'Disponibilidade'}")
     print("-" * 70)
     for f in freelancers:
-        print(f"{f.CPF:<12} {f.Nome:<20} {f.Telefone:<12} {f.FuncaoID:<9} {f.Disponibilidade}")
+        print(f"{f.CPF:<12} {f.Nome:<20} {f.Telefone:<12} {f.FuncaoID:<9} {f.Disponibilidade:<12}")
 
     print("\n Valores:")
     valores = session.query(ValorDiariaHora).all()
@@ -207,8 +135,7 @@ def show_depois():
     print(f"{'ID':<4} {'CPF':<12} {'CNPJ':<18} {'Data':<12} {'Inicio':<8} {'Fim':<8} {'Modalidade':<11} {'FuncaoID':<9} {'Status'}")
     print("-" * 100)
     for a in agendamentos:
-        print(f"{a.AgendamentoID:<4} {a.CPF:<12} {a.CNPJ:<18} {a.Data:<12} {a.HoraInicio:<8} {a.HoraFim:<8} {a.Modalidade:<11} {a.FuncaoID:<9} {a.Status}")
-
+        print(f"{a.AgendamentoID:<4} {a.CPF:<12} {a.CNPJ:<18} {a.Data} {a.HoraInicio} {a.HoraFim} {a.Modalidade:<11} {a.FuncaoID:<9} {a.Status}")
 
     print("\n Pagamentos:")
     pagamentos = session.query(Pagamento).all()
@@ -240,13 +167,13 @@ def contratantesdofreelancer(cpf="12345678900"):
         contratante = session.query(Contratante).filter_by(CNPJ=a.CNPJ).first()
         print(f"- {contratante.NomeEstabelecimento} (CNPJ: {contratante.CNPJ})")
 
+if __name__ == "__main__":    
 
-if __name__ == "__main__":
-    #reset_db()
-    #insert_initial_data()
-    #show_antes()
+    reset_db()
+    insert_initial_data()
+    show()
+    
     #crud()
     #listaragendamentoscomnomes()
-    contratantesdofreelancer()
-    freelancersporcontratante()
-    show_depois()
+    #contratantesdofreelancer()
+    #freelancersporcontratante()

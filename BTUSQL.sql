@@ -136,3 +136,10 @@ SELECT * FROM Contratante;
 SELECT * FROM Valor_Diaria_Hora;
 SELECT * FROM Freelancer;
 SELECT * FROM Agendamento;
+
+DROP TABLE Agendamento;
+DROP TABLE Pagamento;
+DROP TABLE Valor_Diaria_Hora;
+DROP TABLE Funcao;
+DROP TABLE Contratante;
+DROP TABLE Freelancer;
