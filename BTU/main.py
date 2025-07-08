@@ -104,6 +104,28 @@ def crud():
     session.delete(excluir)
     session.commit()
 
+    alterar2 = session.query(Funcao).filter_by(FuncaoID=2).first()
+    alterar2.DescricaoFuncao = "Cozinheiro Chef"
+    session.commit()
+
+    excluir2 = session.query(Freelancer).filter_by(CPF="56789012345").first()
+    session.delete(excluir2)
+    session.commit()
+
+    novopagamento = Pagamento(
+        PagamentoID=11,
+        CNPJ="42370268000199",
+        CPF="23456789012",
+        FuncaoID=2,
+        ValorID=4,
+        DataPagamento=date(2025, 7, 11),
+        Modalidade="Diária",
+        MetodoPagamento="Cartão",
+        ValorCalculado=210.00
+    )
+    session.add(novopagamento)
+    session.commit()
+
 def show_antes():
     print("\n Funcao Antes:")
     funcoes = session.query(Funcao).all()
