@@ -25,27 +25,68 @@ def insert_initial_data():
     ])
 
     session.add_all([
-        Contratante(CNPJ="12345678000101", NomeEstabelecimento="Bar do Ze", Telefone="44999990001", Endereco="Rua das Flores, 100", NomeResponsavel="Jose Silva", TipoEstabelecimento="Bar"),
-        Contratante(CNPJ="23456789000102", NomeEstabelecimento="Lanchonete Sabor", Telefone="44999990002", Endereco="Av. Brasil, 200", NomeResponsavel="Ana Costa", TipoEstabelecimento="Lanchonete")
+        Contratante(CNPJ="42370268000199", NomeEstabelecimento="Bar do Ze", Telefone="44998123456", Endereco="Rua das Flores, 100", NomeResponsavel="Jose Silva", TipoEstabelecimento="Bar"),
+        Contratante(CNPJ="09182734000155", NomeEstabelecimento="Lanchonete Sabor", Telefone="44998234567", Endereco="Av. Brasil, 200", NomeResponsavel="Ana Costa", TipoEstabelecimento="Lanchonete"),
+        Contratante(CNPJ="31654987000120", NomeEstabelecimento="Restaurante Delicia", Telefone="44998345678", Endereco="Rua Central, 300", NomeResponsavel="Mario Lima", TipoEstabelecimento="Restaurante"),
+        Contratante(CNPJ="72093556000181", NomeEstabelecimento="Pizzaria Massa", Telefone="44998456789", Endereco="Av. Sao Paulo, 400", NomeResponsavel="Laura Souza", TipoEstabelecimento="Pizzaria"),
+        Contratante(CNPJ="87564320000133", NomeEstabelecimento="Cafe Aroma", Telefone="44998567890", Endereco="Rua das Palmeiras, 500", NomeResponsavel="Paulo Ramos", TipoEstabelecimento="Cafe"),
+        Contratante(CNPJ="26143978000177", NomeEstabelecimento="Hamburgueria Top", Telefone="44998678901", Endereco="Av. Parana, 600", NomeResponsavel="Luciana Alves", TipoEstabelecimento="Hamburgueria"),
+        Contratante(CNPJ="53001749000114", NomeEstabelecimento="Bar da Esquina", Telefone="44998789012", Endereco="Rua 7 de Setembro, 700", NomeResponsavel="Carlos Mendes", TipoEstabelecimento="Bar"),
+        Contratante(CNPJ="64839225000169", NomeEstabelecimento="Espetinho Bom", Telefone="44998890123", Endereco="Av. Getulio Vargas, 800", NomeResponsavel="Fernanda Dias", TipoEstabelecimento="Espetaria"),
+        Contratante(CNPJ="79432111000188", NomeEstabelecimento="Tapiocaria Saborosa", Telefone="44998901234", Endereco="Rua dos Comerciantes, 900", NomeResponsavel="Juliana Castro", TipoEstabelecimento="Tapiocaria"),
+        Contratante(CNPJ="10345678000101", NomeEstabelecimento="Sushi Place", Telefone="44999012345", Endereco="Av. Japao, 1000", NomeResponsavel="Takashi Ito", TipoEstabelecimento="Restaurante Japones")
     ])
 
     session.add_all([
-        Freelancer(CPF="11111111111", Nome="Carlos Martins", Telefone="44999880001", FuncaoID=1, Disponibilidade="Noite"),
-        Freelancer(CPF="22222222222", Nome="Ana Beatriz", Telefone="44999880002", FuncaoID=2, Disponibilidade="Tarde")
+        Freelancer(CPF="12345678900", Nome="Carlos Martins", Telefone="44998011111", FuncaoID=1, Disponibilidade="Noite"),
+        Freelancer(CPF="23456789012", Nome="Ana Beatriz", Telefone="44998022222", FuncaoID=2, Disponibilidade="Tarde"),
+        Freelancer(CPF="34567890123", Nome="Bruno Lima", Telefone="44998033333", FuncaoID=3, Disponibilidade="Manha"),
+        Freelancer(CPF="45678901234", Nome="Camila Rocha", Telefone="44998044444", FuncaoID=4, Disponibilidade="Noite"),
+        Freelancer(CPF="56789012345", Nome="Daniel Souza", Telefone="44998055555", FuncaoID=5, Disponibilidade="Tarde"),
+        Freelancer(CPF="67890123456", Nome="Elisa Ferreira", Telefone="44998066666", FuncaoID=6, Disponibilidade="Manha"),
+        Freelancer(CPF="78901234567", Nome="Felipe Andrade", Telefone="44998077777", FuncaoID=7, Disponibilidade="Noite"),
+        Freelancer(CPF="89012345678", Nome="Gabriela Nunes", Telefone="44998088888", FuncaoID=8, Disponibilidade="Tarde"),
+        Freelancer(CPF="90123456789", Nome="Henrique Oliveira", Telefone="44998099999", FuncaoID=9, Disponibilidade="Manha"),
+        Freelancer(CPF="01234567890", Nome="Isabela Mendes", Telefone="44998101010", FuncaoID=10, Disponibilidade="Tarde")
     ])
 
     session.add_all([
         ValorDiariaHora(ValorID=1, FuncaoID=1, Tipo="hora", Valor=20.00),
         ValorDiariaHora(ValorID=2, FuncaoID=1, Tipo="diaria", Valor=160.00),
-        ValorDiariaHora(ValorID=4, FuncaoID=2, Tipo="diaria", Valor=200.00)
+        ValorDiariaHora(ValorID=3, FuncaoID=2, Tipo="hora", Valor=25.00),
+        ValorDiariaHora(ValorID=4, FuncaoID=2, Tipo="diaria", Valor=200.00),
+        ValorDiariaHora(ValorID=5, FuncaoID=3, Tipo="hora", Valor=18.00),
+        ValorDiariaHora(ValorID=6, FuncaoID=4, Tipo="diaria", Valor=150.00),
+        ValorDiariaHora(ValorID=7, FuncaoID=5, Tipo="hora", Valor=22.00),
+        ValorDiariaHora(ValorID=8, FuncaoID=6, Tipo="diaria", Valor=140.00),
+        ValorDiariaHora(ValorID=9, FuncaoID=7, Tipo="hora", Valor=19.00),
+        ValorDiariaHora(ValorID=10, FuncaoID=8, Tipo="diaria", Valor=145.00)
     ])
 
     session.add(
-        Agendamento(AgendamentoID=1, CNPJ="12345678000101", CPF="11111111111", Data=date(2025, 7, 1), HoraInicio=time(18, 0), HoraFim=time(23, 0), Modalidade="hora", FuncaoID=1, Status="confirmado")
+       Agendamento(AgendamentoID=1, CNPJ="42370268000199", CPF="12345678900", Data=date(2025, 7, 1), HoraInicio=time(18, 0), HoraFim=time(23, 0), Modalidade="hora", FuncaoID=1, Status="confirmado"),
+        Agendamento(AgendamentoID=2, CNPJ="09182734000155", CPF="23456789012", Data=date(2025, 7, 2), HoraInicio=time(10, 0), HoraFim=time(16, 0), Modalidade="diaria", FuncaoID=2, Status="pendente"),
+        Agendamento(AgendamentoID=3, CNPJ="31654987000120", CPF="34567890123", Data=date(2025, 7, 3), HoraInicio=time(8, 0), HoraFim=time(12, 0), Modalidade="hora", FuncaoID=3, Status="confirmado"),
+        Agendamento(AgendamentoID=4, CNPJ="72093556000181", CPF="45678901234", Data=date(2025, 7, 4), HoraInicio=time(14, 0), HoraFim=time(22, 0), Modalidade="diaria", FuncaoID=4, Status="cancelado"),
+        Agendamento(AgendamentoID=5, CNPJ="87564320000133", CPF="56789012345", Data=date(2025, 7, 5), HoraInicio=time(15, 0), HoraFim=time(20, 0), Modalidade="hora", FuncaoID=5, Status="confirmado"),
+        Agendamento(AgendamentoID=6, CNPJ="26143978000177", CPF="67890123456", Data=date(2025, 7, 6), HoraInicio=time(9, 0), HoraFim=time(17, 0), Modalidade="diaria", FuncaoID=6, Status="pendente"),
+        Agendamento(AgendamentoID=7, CNPJ="53001749000114", CPF="78901234567", Data=date(2025, 7, 7), HoraInicio=time(12, 0), HoraFim=time(18, 0), Modalidade="hora", FuncaoID=7, Status="confirmado"),
+        Agendamento(AgendamentoID=8, CNPJ="64839225000169", CPF="89012345678", Data=date(2025, 7, 8), HoraInicio=time(17, 0), HoraFim=time(22, 0), Modalidade="diaria", FuncaoID=8, Status="confirmado"),
+        Agendamento(AgendamentoID=9, CNPJ="79432111000188", CPF="90123456789", Data=date(2025, 7, 9), HoraInicio=time(7, 0), HoraFim=time(13, 0), Modalidade="hora", FuncaoID=9, Status="pendente"),
+        Agendamento(AgendamentoID=10, CNPJ="10345678000101", CPF="01234567890", Data=date(2025, 7, 10), HoraInicio=time(16, 0), HoraFim=time(22, 0), Modalidade="diaria", FuncaoID=10, Status="confirmado")
     )
 
     session.add(
-        Pagamento(PagamentoID=1, CNPJ="12345678000101", CPF="11111111111", FuncaoID=1, ValorID=1, DataPagamento=date(2025, 7, 1), Modalidade="hora", MetodoPagamento="PIX", ValorCalculado=100.00)
+        Pagamento(PagamentoID=1, CNPJ="42370268000199", CPF="12345678900", FuncaoID=1, ValorID=1, DataPagamento=date(2025, 7, 1), Modalidade="hora", MetodoPagamento="PIX", ValorCalculado=100.00),
+        Pagamento(PagamentoID=2, CNPJ="09182734000155", CPF="23456789012", FuncaoID=2, ValorID=4, DataPagamento=date(2025, 7, 2), Modalidade="diaria", MetodoPagamento="Cartao", ValorCalculado=200.00),
+        Pagamento(PagamentoID=3, CNPJ="31654987000120", CPF="34567890123", FuncaoID=3, ValorID=5, DataPagamento=date(2025, 7, 3), Modalidade="hora", MetodoPagamento="Dinheiro", ValorCalculado=72.00),
+        Pagamento(PagamentoID=4, CNPJ="72093556000181", CPF="45678901234", FuncaoID=4, ValorID=6, DataPagamento=date(2025, 7, 4), Modalidade="diaria", MetodoPagamento="PIX", ValorCalculado=150.00),
+        Pagamento(PagamentoID=5, CNPJ="87564320000133", CPF="56789012345", FuncaoID=5, ValorID=7, DataPagamento=date(2025, 7, 5), Modalidade="hora", MetodoPagamento="Cartao", ValorCalculado=110.00),
+        Pagamento(PagamentoID=6, CNPJ="26143978000177", CPF="67890123456", FuncaoID=6, ValorID=8, DataPagamento=date(2025, 7, 6), Modalidade="diaria", MetodoPagamento="Dinheiro", ValorCalculado=140.00),
+        Pagamento(PagamentoID=7, CNPJ="53001749000114", CPF="78901234567", FuncaoID=7, ValorID=9, DataPagamento=date(2025, 7, 7), Modalidade="hora", MetodoPagamento="PIX", ValorCalculado=95.00),
+        Pagamento(PagamentoID=8, CNPJ="64839225000169", CPF="89012345678", FuncaoID=8, ValorID=10, DataPagamento=date(2025, 7, 8), Modalidade="diaria", MetodoPagamento="Cartao", ValorCalculado=145.00),
+        Pagamento(PagamentoID=9, CNPJ="79432111000188", CPF="90123456789", FuncaoID=9, ValorID=9, DataPagamento=date(2025, 7, 9), Modalidade="hora", MetodoPagamento="Dinheiro", ValorCalculado=114.00),
+        Pagamento(PagamentoID=10, CNPJ="10345678000101", CPF="01234567890", FuncaoID=10, ValorID=10, DataPagamento=date(2025, 7, 10), Modalidade="diaria", MetodoPagamento="PIX", ValorCalculado=145.00)
     )
 
     session.commit()
