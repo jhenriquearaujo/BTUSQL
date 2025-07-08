@@ -126,6 +126,8 @@ def crud():
     session.add(novopagamento)
     session.commit()
 
+    
+
 def show_antes():
     print("\n Funcao Antes:")
     funcoes = session.query(Funcao).all()
@@ -216,9 +218,35 @@ def show_depois():
     #    data = p.DataPagamento.strftime("%d-%m-%Y") if p.DataPagamento else "-"
     #    print(f"{p.PagamentoID:<4} {p.CPF:<12} {p.CNPJ:<18} {p.FuncaoID:<9} {p.ValorID:<8} {p.DataPagamento:} {p.Modalidade:<11} {p.MetodoPagamento:<10} {p.ValorCalculado}")
 
+def freelancersporcontratante(cnpj):
+    print(f"\nFreelancers contratados por {cnpj}:")
+    agendamentos = session.query(Agendamento).filter_by(CNPJ=cnpj).all()
+    for a in agendamentos:
+        freelancer = session.query(Freelancer).filter_by(CPF=a.CPF).first()
+        print(f"- {freelancer.Nome} (CPF: {freelancer.CPF})")
+
+def contratantesdofreelancer(cpf):
+    print(f"\nContratantes que contrataram o freelancer {cpf}:")
+    agendamentos = session.query(Agendamento).filter_by(CPF=cpf).all()
+    for a in agendamentos:
+        contratante = session.query(Contratante).filter_by(CNPJ=a.CNPJ).first()
+        print(f"- {contratante.NomeEstabelecimento} (CNPJ: {contratante.CNPJ})")
+
+def listaragendamentoscomnomes():
+    print("\nAgendamentos:")
+    agendamentos = session.query(Agendamento).all()
+    for a in agendamentos:
+        freelancer = session.query(Freelancer).filter_by(CPF=a.CPF).first()
+        contratante = session.query(Contratante).filter_by(CNPJ=a.CNPJ).first()
+        print(f"{a.Data} | {freelancer.Nome} -> {contratante.NomeEstabelecimento} | Status: {a.Status}")
+
+
 if __name__ == "__main__":
     #reset_db()
     #insert_initial_data()
     show_antes()
     crud()
     show_depois()
+    listaragendamentoscomnomes()
+    contratantesdofreelancer()
+    freelancersporcontratante()
