@@ -36,8 +36,7 @@ python main.py
 
 - Mapeamento completo das tabelas com SQLAlchemy
 - Inserção de dados de teste
-- CRUD para entidade `Funcao`
-- Consultas ORM com joins e filtros
+- CRUD para entidades
 
 ## 📁 Estrutura
 
